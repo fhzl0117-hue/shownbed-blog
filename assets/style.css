@@ -36,7 +36,7 @@ button { font-family: inherit; cursor: pointer; }
 
 .serif { font-family: "Noto Serif KR", "Nanum Myeongjo", Georgia, serif; }
 
-/* page shell: mobile design, centered on wider screens */
+/* page shell: mobile-first, widens into a real desktop layout past 900px */
 .page {
   max-width: 480px;
   margin: 0 auto;
@@ -45,7 +45,7 @@ button { font-family: inherit; cursor: pointer; }
   position: relative;
   box-shadow: 0 0 60px rgba(31, 42, 68, 0.06);
 }
-@media (min-width: 481px) {
+@media (min-width: 481px) and (max-width: 899px) {
   body { background: #E7E2D6; }
 }
 
@@ -234,3 +234,70 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .back-home { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--sage); font-weight: 600; }
+
+/* ============================================================
+   DESKTOP (900px+) — homepage reflows into a real wide layout;
+   the article page just widens its single reading column.
+   ============================================================ */
+@media (min-width: 900px) {
+  body { background: var(--cream); }
+
+  .page {
+    max-width: 1120px;
+    box-shadow: none;
+  }
+
+  /* header breathes a bit more, logo badge scales up slightly */
+  .site-header { padding: 22px 40px; }
+  .logo-badge { width: 52px; height: 52px; }
+
+  /* hero becomes a real two-column moment: copy left, mark right */
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    padding: 72px 56px;
+  }
+  .hero .deco { position: static; opacity: 1; flex: none; }
+  .hero .inner { max-width: 440px; }
+  .hero h1 { font-size: 40px; }
+  .hero .lede { font-size: 16px; }
+
+  .section { padding: 64px 40px 8px; }
+  .section-title { font-size: 23px; }
+  .section-sub { font-size: 14px; }
+
+  /* category grid: four across instead of two */
+  .cat-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  .cat-card { padding: 22px 18px; }
+
+  /* post list becomes a card grid — thumb on top, text below */
+  .post-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .post-row { flex-direction: column; padding: 0; overflow: hidden; }
+  .post-row .thumb { width: 100%; height: 220px; border-radius: 0; }
+  .post-row .meta { padding: 16px 18px 18px; gap: 6px; }
+  .post-row .title { font-size: 16px; }
+  .coming-soon { grid-column: 1 / -1; }
+
+  .store-banner { margin: 64px 40px 0; padding: 48px 64px; }
+  .store-banner .headline { font-size: 23px; }
+
+  .site-footer { padding: 40px 40px 48px; }
+}
+
+/* article page: a single wider reading column, not a multi-column reflow */
+@media (min-width: 900px) {
+  .article-page .page { max-width: 760px; }
+  .article-page .article-head,
+  .article-page .article-body,
+  .article-page .bottom-cta,
+  .article-page .section {
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .article-page .article-hero { height: 360px; }
+  .article-page .article-title { font-size: 30px; }
+  .article-page .article-body p { font-size: 16px; }
+}
