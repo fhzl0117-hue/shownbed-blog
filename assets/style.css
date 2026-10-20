@@ -313,3 +313,7 @@ button { font-family: inherit; cursor: pointer; }
   .article-page .ep-nav { max-width: 680px; margin-left: auto; margin-right: auto; }
   .webtoon-strip img { width: 100%; max-width: 560px; align-self: center; }
 }
+/* article video */
+.article-video { margin: 4px auto 26px; max-width: 340px; }
+.article-video video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: 14px; background: #1B1F2A; }
+.article-video figcaption { margin-top: 10px; font-size: 13px; line-height: 1.6; color: var(--muted, #6B6B6B); text-align: center; }
